@@ -63,4 +63,4 @@ Copy example.env to .env and edit it and update the 'SECRET_KEY' to something se
 Suitable for various applications requiring secure client-server authentication, as an alternative to password or API key methods.
 
 ## Disclaimer
-This implementation is for demonstration and educational purposes. Additional security measures such as putting behind an HTTPS/TLS proxy to encrypt communication between the client and server, logging and additional features may be required for production use.
+This implementation is for demonstration and educational purposes. Additional security measures such as putting the API server behind an HTTPS/TLS proxy to encrypt communication between the client and server, logging and additional features may be required for production use.
