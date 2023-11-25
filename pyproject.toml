@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "rolling-code-auth"
 version = "0.1.0"
-description = "Basic implemenation of a rolling code authenticatin system."
+description = "A basic implementation of a rolling code authentication system."
 authors = ["Robert McDermott <robert.c.mcdermott@gmail.com>"]
 license = "Apache 2.0"
 readme = "README.md"
