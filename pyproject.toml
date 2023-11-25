@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "rolling-code-auth"
+version = "0.1.0"
+description = "Basic implemenation of a rolling code authenticatin system."
+authors = ["Robert McDermott <robert.c.mcdermott@gmail.com>"]
+license = "Apache 2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pydantic = "^2.5.2"
+fastapi = "^0.104.1"
+requests = "^2.31.0"
+uvicorn = "^0.24.0.post1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
