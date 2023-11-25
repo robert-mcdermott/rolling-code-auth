@@ -1,4 +1,4 @@
-# Rolling Code Security System
+# Rolling Code Authentication System
 
 ![rolling-code-auth-banner](images/rolling-code-auth-banner.png)
 
