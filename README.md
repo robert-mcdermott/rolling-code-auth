@@ -1,5 +1,7 @@
 # Rolling Code Security System
 
+![rolling-code-auth-banner](images/rolling-code-auth-banner.png)
+
 ## Overview
 This repository contains an example implementation of a rolling code security system, similar to those used in modern garage door openers and Remote Keyless Entry (RKE) car key fobs. This is an implementation of a rolling code system to use as a client-server authentication system, offering a secure alternative to traditional passwords and API keys.
 
