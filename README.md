@@ -5,11 +5,11 @@
 ## Overview
 This repository contains an example implementation of a rolling code security system, similar to those used in modern garage door openers and Remote Keyless Entry (RKE) car key fobs. This is an implementation of a rolling code system to use as a client-server authentication system, offering a secure alternative to traditional passwords and API keys.
 
-This is a reference implementation, I doesn't do anything beyond authentication, you'll have to integrated into your application as need.
+This is a reference implementation, It doesn't do anything beyond authentication, you'll have to integrate it into your application as needed.
 
 
 ### What is a Rolling Code?
-A rolling code is a security technology used in remote keyless entry systems where each use of the remote control generates a new code. This code changes with every use, based on a shared secret, algorithm and a counter, enhancing security by preventing replay attacks. It's essentially a One Time Password (OTP) system. In this implemenation, 
+A rolling code is a security technology used in remote keyless entry systems where each use of the remote control generates a new code. This code changes with every use, based on a shared secret, algorithm and a counter, enhancing security by preventing replay attacks. It's essentially a One Time Password (OTP) system.
 
 ## Components
 1. **Client (Remote Control)**: Simulates a remote device sending a unique code to the server for authentication.
@@ -17,7 +17,7 @@ A rolling code is a security technology used in remote keyless entry systems whe
 2. **Server (Garage Door Opener)**: Represents the server that receives and validates the code sent by the client.
 
 ## How It Works
-1. **Code Generation**: The client and server start with a shared secret seed and a counter. The client generates a code (SHA-256 cryptographic hash) using the shared secret seed and counter for each authentication attempt.
+1. **Code Generation**: The client and server start with a shared secret key and a counter. The client generates a code (SHA-256 cryptographic hash) using the secret key and counter for each authentication attempt. The generated code is only ever used once, a new code is generated for each authentication. The secret key and counter value are never exposed over the network.
 
 2. **Code Transmission**: The client sends the code (SHA-256 cryptographic hash) to the server.
 
@@ -26,9 +26,9 @@ A rolling code is a security technology used in remote keyless entry systems whe
 4. **Counter value persistance**: Both client and server store the current counter value in an SQLite database to continue from the last state after restarts.
 
 ## Handling Counter Desynchronization
-- **Tolerance for Desynchronization**: The system allows a tolerance for the counters to be slightly out of sync. This is crucial for scenarios where the client might use the remote out of the server's range, causing the client's counter to increment without the server's knowledge.
+- **Tolerance for Desynchronization**: The system allows a tolerance for the counters to be slightly out of sync. This is crucial for scenarios where the client might have connectivity problems reaching the server, causing the client's counter to increment without the server's knowledge.
 
-- **Resynchronization**: When a code is received within this tolerance range, the server adjusts its counter to match the client's, effectively resynchronizing them. This mechanism ensures that occasional desynchronization doesn't disrupt the system's functionality. If the client's counter gets farther ahead of the server's counter than the tolerance allows (failed auth attempts, due to network interruptions, etc.), automatic resynchronization will no longer be possible and will require manual intervention (zeroing the counters by deleting the databases for both the client and server)
+- **Resynchronization**: When a code is received within this tolerance range, the server adjusts its counter to match the client's, effectively resynchronizing them. This mechanism ensures that occasional desynchronization doesn't disrupt the system's functionality. If the client's counter gets farther ahead of the server's counter than the tolerance allows (multiple failed auth attempts due to network interruptions, etc.), automatic resynchronization will no longer be possible and will require manual intervention (zeroing the counters by deleting the databases for both the client and server)
 
 ## Security Features
 - **Shared Secret**: The shared secret is not transmitted over the network.
